@@ -1,4 +1,4 @@
-package com.codecool.classical_music_scores.entity.dto;
+package com.codecool.classical_music_scores.entity.type;
 
 public enum InstrumentType {
 
