@@ -20,6 +20,9 @@ public class Publisher {
     private String name;
 
     @OneToMany
-    private List<Score> scoreList;
+    private List<Score> scores;
+
+    @OneToMany
+    private List<Composer> composers;
 
 }
