@@ -1,6 +1,8 @@
 package com.codecool.classical_music_scores.controller;
 
+import com.codecool.classical_music_scores.entity.Composer;
 import com.codecool.classical_music_scores.entity.Publisher;
+import com.codecool.classical_music_scores.entity.Score;
 import com.codecool.classical_music_scores.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,11 @@ public class PublisherController {
     @GetMapping("/{id}")
     public Publisher findPublisherById(@PathVariable("id") Long id) {
         return publisherService.findPublisherById(id);
+    }
+
+    @GetMapping("/{id}/scores")
+    public List<Score> findAllScoresFromPublisher(@PathVariable("id") Long id) {
+        return publisherService.findAllScoresFromPublisher(id);
     }
 
     @PostMapping

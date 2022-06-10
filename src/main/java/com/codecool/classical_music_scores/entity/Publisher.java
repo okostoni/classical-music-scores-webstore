@@ -16,12 +16,8 @@ public class Publisher {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "publisher")
     @JsonManagedReference
     private List<Score> scores;
-
-    @OneToMany
-    @JsonManagedReference
-    private List<Composer> composers;
 
 }

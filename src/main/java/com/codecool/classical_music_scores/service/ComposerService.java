@@ -34,7 +34,7 @@ public class ComposerService {
         selectedComposer.setName(composer.getName());
         selectedComposer.setYearOfBirth(composer.getYearOfBirth());
         selectedComposer.setYearOfDeath(composer.getYearOfDeath());
-        selectedComposer.setListOfWorks(composer.getListOfWorks());
+        selectedComposer.setScores(composer.getScores());
     }
 
     public void deleteComposer(Long id) {

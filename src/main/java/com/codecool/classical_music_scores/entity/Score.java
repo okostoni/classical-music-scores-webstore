@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.Year;
 
 @Entity
 @Data
@@ -15,18 +14,22 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
     private String title;
 
     @ManyToOne
+    @JoinColumn(name = "composer_id")
     @JsonBackReference
     private Composer composer;
     
     @Enumerated(value = EnumType.STRING)
     private InstrumentType instrumentType;
-    private Year yearOfCreation;
+
+    private Integer yearOfCreation;
     private double price;
 
     @ManyToOne
+    @JoinColumn(name = "publisher_id")
     @JsonBackReference
     private Publisher publisher;
 

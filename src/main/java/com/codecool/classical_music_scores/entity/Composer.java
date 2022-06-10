@@ -1,9 +1,9 @@
 package com.codecool.classical_music_scores.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.Year;
 import java.util.List;
 
 @Entity
@@ -15,10 +15,11 @@ public class Composer {
     private Long id;
 
     private String name;
-    private Year yearOfBirth;
-    private Year yearOfDeath;
+    private Integer yearOfBirth;
+    private Integer yearOfDeath;
 
     @OneToMany(mappedBy = "composer")
-    private List<Score> listOfWorks;
+    @JsonManagedReference
+    private List<Score> scores;
 
 }
