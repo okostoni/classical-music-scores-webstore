@@ -35,6 +35,6 @@ INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of
 INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('ORGAN', true, 7000, 'Triosonatas', 1726, 4, 1);
 INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('VOICE', true, 4000, 'Winterreise', 1827, 9, 7);
 INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('TRUMPET', true, 3500, 'Trumpet Concerto in E-Flat Major', 1796, 6, 6);
-INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('GUITAR', true, 4400, 'Guitar concerto in D major', 1731, 3, 5);
-INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('OBOE', false, 5300, 'Sonata in C major for Oboe and Continuo', 1733, 4, 7);
+INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('GUITAR', true, 4400, 'Guitar concerto in D major', 1731, 3, 4);
+INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('OBOE', false, 5300, 'Sonata in C major for Oboe and Continuo', 1733, 4, 1);
 INSERT INTO score (instrument_type, is_available_in_stock, price, title, year_of_creation, composer_id, publisher_id) VALUES ('HORN', true, 5900, 'Horn Concerto No. 4 in E flat', 1786, 7, 7);

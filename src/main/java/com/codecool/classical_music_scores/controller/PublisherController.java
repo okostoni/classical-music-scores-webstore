@@ -5,6 +5,7 @@ import com.codecool.classical_music_scores.entity.Publisher;
 import com.codecool.classical_music_scores.entity.Score;
 import com.codecool.classical_music_scores.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +36,12 @@ public class PublisherController {
         return publisherService.findAllScoresFromPublisher(id);
     }
 
-    @PostMapping
+    @GetMapping("/{id}/composers")
+    public List<Composer> findAllComposersFromPublisher(@PathVariable("id") Long id) {
+        return publisherService.findAllComposersFromPublisher(id);
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addNewPublisher(@RequestBody Publisher publisher) {
         publisherService.addNewPublisher(publisher);
     }

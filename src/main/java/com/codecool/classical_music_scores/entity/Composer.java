@@ -18,8 +18,8 @@ public class Composer {
     private Integer yearOfBirth;
     private Integer yearOfDeath;
 
-    @OneToMany(mappedBy = "composer")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "composer", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "composer")
     private List<Score> scores;
 
 }

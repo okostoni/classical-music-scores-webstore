@@ -19,18 +19,18 @@ public class Score {
 
     @ManyToOne
     @JoinColumn(name = "composer_id")
-    @JsonBackReference
+    @JsonBackReference(value = "composer")
     private Composer composer;
-    
+
     @Enumerated(value = EnumType.STRING)
     private InstrumentType instrumentType;
 
     private Integer yearOfCreation;
     private double price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id")
-    @JsonBackReference
+    @JsonBackReference(value = "publisher")
     private Publisher publisher;
 
     private boolean isAvailableInStock;

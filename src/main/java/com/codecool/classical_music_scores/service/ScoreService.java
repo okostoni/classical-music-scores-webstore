@@ -1,5 +1,7 @@
 package com.codecool.classical_music_scores.service;
 
+import com.codecool.classical_music_scores.entity.Composer;
+import com.codecool.classical_music_scores.entity.Publisher;
 import com.codecool.classical_music_scores.entity.Score;
 import com.codecool.classical_music_scores.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,18 @@ public class ScoreService {
         selectedScore.setInstrumentType(score.getInstrumentType());
         selectedScore.setTitle(score.getTitle());
         selectedScore.setYearOfCreation(score.getYearOfCreation());
+        scoreRepository.save(selectedScore);
     }
 
     public void deleteScoreById(Long id) {
         scoreRepository.deleteById(id);
+    }
+
+    public Composer findComposerByScoreId(Long id) {
+        return scoreRepository.findComposerById(id);
+    }
+
+    public Publisher findPublisherByScoreId(Long id) {
+        return scoreRepository.findPublisherByScoreId(id);
     }
 }

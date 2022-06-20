@@ -16,8 +16,8 @@ public class Publisher {
 
     private String name;
 
-    @OneToMany(mappedBy = "publisher")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "publisher")
     private List<Score> scores;
 
 }

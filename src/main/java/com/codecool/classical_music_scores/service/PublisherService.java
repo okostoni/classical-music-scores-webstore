@@ -35,6 +35,7 @@ public class PublisherService {
         Publisher selectedPublisher = findPublisherById(id);
         selectedPublisher.setName(publisher.getName());
         selectedPublisher.setScores(publisher.getScores());
+        publisherRepository.save(selectedPublisher);
     }
 
     public void deletePublisherById(Long id) {
@@ -43,5 +44,9 @@ public class PublisherService {
 
     public List<Score> findAllScoresFromPublisher(Long id) {
         return publisherRepository.findAllScoresFromPublisher(id);
+    }
+
+    public List<Composer> findAllComposersFromPublisher(Long id) {
+        return publisherRepository.findAllComposersFromPublisher(id);
     }
 }

@@ -1,8 +1,10 @@
 package com.codecool.classical_music_scores.controller;
 
 import com.codecool.classical_music_scores.entity.Composer;
+import com.codecool.classical_music_scores.entity.Score;
 import com.codecool.classical_music_scores.service.ComposerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +28,11 @@ public class ComposerController {
     @GetMapping("/{id}")
     public Composer findComposerById(@PathVariable("id") Long id) {
         return composerService.findComposerById(id);
+    }
+
+    @GetMapping("/{id}/scores")
+    public List<Score> findAllScoresFromComposerById(@PathVariable("id") Long id) {
+        return composerService.findAllScoresFromComposerById(id);
     }
 
     @PostMapping

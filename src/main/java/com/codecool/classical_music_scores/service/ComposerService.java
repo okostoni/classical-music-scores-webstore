@@ -1,6 +1,7 @@
 package com.codecool.classical_music_scores.service;
 
 import com.codecool.classical_music_scores.entity.Composer;
+import com.codecool.classical_music_scores.entity.Score;
 import com.codecool.classical_music_scores.repository.ComposerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,9 +36,14 @@ public class ComposerService {
         selectedComposer.setYearOfBirth(composer.getYearOfBirth());
         selectedComposer.setYearOfDeath(composer.getYearOfDeath());
         selectedComposer.setScores(composer.getScores());
+        composerRepository.save(selectedComposer);
     }
 
     public void deleteComposer(Long id) {
         composerRepository.deleteById(id);
+    }
+
+    public List<Score> findAllScoresFromComposerById(Long id) {
+        return composerRepository.findAllScoresFromComposerById(id);
     }
 }
