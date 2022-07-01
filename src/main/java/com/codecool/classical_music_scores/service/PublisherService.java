@@ -27,15 +27,20 @@ public class PublisherService {
         return publisherRepository.findById(id).orElseThrow();
     }
 
-    public void addNewPublisher(Publisher publisher) {
-        publisherRepository.save(publisher);
+    public Publisher addNewPublisher(Publisher publisher) {
+        return publisherRepository.save(publisher);
     }
 
-    public void updatePublisherById(Long id, Publisher publisher) {
+    public Publisher updatePublisherById(Long id, Publisher publisher) {
         Publisher selectedPublisher = findPublisherById(id);
-        selectedPublisher.setName(publisher.getName());
-        selectedPublisher.setScores(publisher.getScores());
-        publisherRepository.save(selectedPublisher);
+        if (selectedPublisher != null) {
+            selectedPublisher.setId(publisher.getId());
+            selectedPublisher.setName(publisher.getName());
+            selectedPublisher.setScores(publisher.getScores());
+            publisherRepository.save(selectedPublisher);
+            return selectedPublisher;
+        }
+        throw new RuntimeException();
     }
 
     public void deletePublisherById(Long id) {

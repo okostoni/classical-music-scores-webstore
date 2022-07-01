@@ -15,4 +15,5 @@ public interface ScoreRepository extends JpaRepository<Score, Long> {
 
     @Query("SELECT p FROM Score s JOIN s.publisher p WHERE s.id = ?1")
     Publisher findPublisherByScoreId(Long id);
+
 }

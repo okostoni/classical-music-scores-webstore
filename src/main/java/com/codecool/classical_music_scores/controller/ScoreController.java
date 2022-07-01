@@ -1,12 +1,14 @@
 package com.codecool.classical_music_scores.controller;
 
-import com.codecool.classical_music_scores.entity.Composer;
-import com.codecool.classical_music_scores.entity.Publisher;
 import com.codecool.classical_music_scores.entity.Score;
 import com.codecool.classical_music_scores.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,28 +28,70 @@ public class ScoreController {
     }
 
     @GetMapping("/{id}")
-    public Score findScoreById(@PathVariable("id") Long id) {
-        return scoreService.findScoreById(id);
+    public ResponseEntity<?> findScoreById(@PathVariable("id") Long id) {
+        Long tryId;
+        try {
+            tryId = id;
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(scoreService.findScoreById(tryId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping("/{id}/composer")
-    public Composer findComposerByScoreId(@PathVariable("id") Long id) {
-        return scoreService.findComposerByScoreId(id);
+    public ResponseEntity<?> findComposerByScoreId(@PathVariable("id") Long id) {
+        Long tryId;
+        try {
+            tryId = id;
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(scoreService.findComposerByScoreId(tryId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping("{id}/publisher")
-    public Publisher findPublisherByScoreId(@PathVariable("id") Long id) {
-        return scoreService.findPublisherByScoreId(id);
+    public ResponseEntity<?> findPublisherByScoreId(@PathVariable("id") Long id) {
+        Long tryId;
+        try {
+            tryId = id;
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(scoreService.findPublisherByScoreId(tryId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PostMapping
-    public void addNewScore(@RequestBody Score score) {
-        scoreService.addNewScore(score);
+    public ResponseEntity<?> addNewScore(@RequestBody @Valid Score score, BindingResult errors) {
+        if (errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(scoreService.addNewScore(score));
     }
 
     @PutMapping("/{id}")
-    public void updateScoreById(@PathVariable("id") Long id, @RequestBody Score score) {
-        scoreService.updateScoreById(id, score);
+    public ResponseEntity<?> updateScoreById(@RequestBody @Valid Score score, @PathVariable("id") Long id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(scoreService.updateScoreById(id, score));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
     @DeleteMapping("/{id}")

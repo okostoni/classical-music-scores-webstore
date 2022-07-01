@@ -26,17 +26,22 @@ public class ComposerService {
         return composerRepository.findById(id).orElseThrow();
     }
 
-    public void addNewComposer(Composer composer) {
-        composerRepository.save(composer);
+    public Composer addNewComposer(Composer composer) {
+        return composerRepository.save(composer);
     }
 
-    public void updateComposer(Long id, Composer composer) {
+    public Composer updateComposer(Long id, Composer composer) {
         Composer selectedComposer = findComposerById(id);
-        selectedComposer.setName(composer.getName());
-        selectedComposer.setYearOfBirth(composer.getYearOfBirth());
-        selectedComposer.setYearOfDeath(composer.getYearOfDeath());
-        selectedComposer.setScores(composer.getScores());
-        composerRepository.save(selectedComposer);
+        if (selectedComposer != null) {
+            selectedComposer.setId(composer.getId());
+            selectedComposer.setName(composer.getName());
+            selectedComposer.setYearOfBirth(composer.getYearOfBirth());
+            selectedComposer.setYearOfDeath(composer.getYearOfDeath());
+            selectedComposer.setScores(composer.getScores());
+            composerRepository.save(selectedComposer);
+            return selectedComposer;
+        }
+        throw new RuntimeException();
     }
 
     public void deleteComposer(Long id) {

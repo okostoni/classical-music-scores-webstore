@@ -27,20 +27,20 @@ public class ScoreService {
         return scoreRepository.findById(id).orElseThrow();
     }
 
-    public void addNewScore(Score score) {
-        scoreRepository.save(score);
+    public Score addNewScore(Score score) {
+        return scoreRepository.save(score);
     }
 
-    public void updateScoreById(Long id, Score score) {
-        Score selectedScore = findScoreById(id);
-        selectedScore.setComposer(score.getComposer());
-        selectedScore.setAvailableInStock(score.isAvailableInStock());
-        selectedScore.setPrice(score.getPrice());
-        selectedScore.setPublisher(score.getPublisher());
-        selectedScore.setInstrumentType(score.getInstrumentType());
+    public Score updateScoreById(Long id, Score score) {
+        Score selectedScore = scoreRepository.findById(id).orElseThrow();
+        selectedScore.setId(score.getId());
         selectedScore.setTitle(score.getTitle());
         selectedScore.setYearOfCreation(score.getYearOfCreation());
+        selectedScore.setPrice(score.getPrice());
+        selectedScore.setInstrumentType(score.getInstrumentType());
+        selectedScore.setIsAvailableInStock(score.getIsAvailableInStock());
         scoreRepository.save(selectedScore);
+        return selectedScore;
     }
 
     public void deleteScoreById(Long id) {

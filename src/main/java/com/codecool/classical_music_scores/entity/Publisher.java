@@ -1,23 +1,30 @@
 package com.codecool.classical_music_scores.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "Publisher")
 public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
-    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "publisher")
+    @OneToMany(cascade = CascadeType.MERGE)
+    @NotNull
     private List<Score> scores;
 
 }
