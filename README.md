@@ -103,9 +103,9 @@ Három entitás tehát, a Score-nak, mint child entity-nek két parent entity-je
 - src/main/resources/db/migration/V2__.sql
 
 ## Dockerfile, futtatási parancsok
-- docker_build.bat
+- docker_build.bat - lebuildel egy image-t
 - docker_build.sh
-- docker_run.bat
+- docker_run.bat - létrehoz egy container-t az image-ből (ha nem foglalt a port)
 - docker_run.sh
 - Dockerfile
 - tesztek futtatásához: run_tests.cmd
