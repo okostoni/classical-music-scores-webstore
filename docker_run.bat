@@ -1,1 +1,1 @@
-docker run --rm --name classicalmusicscores -p 8080:8080 -it classicalmusicscores
+docker run --rm --network=host -it classicalmusicscores
